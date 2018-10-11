@@ -47,7 +47,8 @@ class Collectioncycle extends AppModel {
 		                    ),
 		                    'conditions' => array(
 		                        'Collectioncycle.title' => $this->data[$this->alias]['title'],
-		                        'Collectioncycle.id !=' => $this->data[$this->alias]['id']
+		                        'Collectioncycle.id !=' => $this->data[$this->alias]['id'],
+		                        'Collectioncycle.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -60,7 +61,8 @@ class Collectioncycle extends AppModel {
 		            'Collectioncycle.title'
 		                    ),
 		                    'conditions' => array(
-		                        'Collectioncycle.title' => $this->data[$this->alias]['title']
+		                        'Collectioncycle.title' => $this->data[$this->alias]['title'],
+		                        'Collectioncycle.deleted_status' => "No"
 		                    )
 		                )
 	        	);
