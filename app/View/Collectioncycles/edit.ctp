@@ -32,7 +32,7 @@
                                 </div>
 								<div class="form-group col-sm-12">
                                     <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
-									<button type="submit" class="btn btn-primary">Update</button>
+									<button type="submit" class="btn btn-primary">Save</button>
 								</div>
                             </form>
                         </div>
