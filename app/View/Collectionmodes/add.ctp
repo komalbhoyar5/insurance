@@ -30,9 +30,9 @@
                                     ?>
                                 </div>
 								<div class="form-group col-sm-12">
-									<a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
-                                    <button type="submit" class="btn btn-primary" name="submit" value="add_cont">Save and continue</button>
-                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+									<a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger pull-right">Cancel</a>
+                                    <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
 								</div>
                             </form>
                         </div>
