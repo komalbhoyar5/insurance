@@ -71,8 +71,8 @@
 	                                </div>
                                 </div>
 								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-primary">Reset</button>
+									<a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Save</button>
 								</div>
                             </form>
                         </div>

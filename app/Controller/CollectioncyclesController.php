@@ -65,7 +65,7 @@ class CollectioncyclesController extends AppController {
 			 //    );
 
 			 //    $this->set('continue', $continue);
-					$this->Session->setFlash('The collection cycle has been saved.', '', array(), 'success');
+				$this->Session->setFlash('The collection cycle has been saved.', '', array(), 'success');
 				if ($this->request->data['submit'] =="add_cont") {
 					return $this->redirect(array('action' => 'add'));
 				}else{
@@ -114,7 +114,6 @@ class CollectioncyclesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		echo $id;
 		$user_id = $this->Auth->user('id');
 		// $this->Collectioncycle->id = $id;
 		if (!$this->Collectioncycle->exists($id)) {

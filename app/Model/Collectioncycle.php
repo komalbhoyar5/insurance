@@ -36,7 +36,9 @@ class Collectioncycle extends AppModel {
 		),
 	);
 
+	
 	function checkUniquetitle($data) {
+		
 		if (isset($this->data[$this->alias]['id'])) {
 		    $isUnique = $this->find(
 		                'first',
@@ -67,7 +69,6 @@ class Collectioncycle extends AppModel {
 		                )
 	        	);
 		}
-	    
 	    if(!empty($isUnique)){
 	    	return false;
 	    }else{

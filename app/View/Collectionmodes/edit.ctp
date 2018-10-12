@@ -20,6 +20,7 @@
                                 <div class="form-group col-sm-12">
                                     <label>Title<span>*</span></label>
                                     <?php
+                                        echo $this->Form->input('id');
                                         echo $this->Form->input(
                                             'title',
                                             array(
@@ -30,7 +31,8 @@
                                     ?>
                                 </div>
 								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+									<button type="submit" class="btn btn-primary">Save</button>
 								</div>
                             </form>
                         </div>

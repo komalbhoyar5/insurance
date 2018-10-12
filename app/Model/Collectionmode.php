@@ -35,7 +35,7 @@ class Collectionmode extends AppModel {
 			)
 		),
 	);
-
+	
 	function checkUniquetitle($data) {
 		if (isset($this->data[$this->alias]['id'])) {
 		    $isUnique = $this->find(
@@ -43,11 +43,12 @@ class Collectionmode extends AppModel {
 		                array(
 		                    'fields' => array(
 		                        'Collectionmode.id',
-		            			'Collectionmode.title'
+		            'Collectionmode.title'
 		                    ),
 		                    'conditions' => array(
 		                        'Collectionmode.title' => $this->data[$this->alias]['title'],
-		                        'Collectionmode.id !=' => $this->data[$this->alias]['id']
+		                        'Collectionmode.id !=' => $this->data[$this->alias]['id'],
+		                        'Collectionmode.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -57,19 +58,18 @@ class Collectionmode extends AppModel {
 	                array(
 	                    'fields' => array(
 	                        'Collectionmode.id',
-		            		'Collectionmode.title'
+		            'Collectionmode.title'
 		                    ),
 		                    'conditions' => array(
-		                        'Collectionmode.title' => $this->data[$this->alias]['title']
+		                        'Collectionmode.title' => $this->data[$this->alias]['title'],
+		                        'Collectionmode.deleted_status' => "No"
 		                    )
 		                )
 	        	);
 		}
-	    
 	    if(!empty($isUnique)){
 	    	return false;
 	    }else{
 	        return true; //If there is no match in DB allow anyone to change
 	    }
-    }
-}
+    }}

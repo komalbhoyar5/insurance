@@ -23,7 +23,8 @@ class DocumentChecklistsController extends AppController {
  */
 	public function index() {
 		$this->DocumentChecklist->recursive = 0;
-		$this->set('documentChecklists', $this->Paginator->paginate());
+		$doc_check = $this->DocumentChecklist->find('all', array('conditions'=>array('deleted_status'=>'No')));
+		$this->set('documentChecklists', $doc_check);
 	}
 
 /**
@@ -47,11 +48,25 @@ class DocumentChecklistsController extends AppController {
  * @return void
  */
 	public function add() {
+		$continue = array();
+		$this->loadmodel('User');
+		$user_id = $this->Auth->user('id');
+		$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
+										 'fields'=>array('company_id')
+										));
 		if ($this->request->is('post')) {
+			$this->request->data['DocumentChecklist']['created_by'] = $user_id;
+			$this->request->data['DocumentChecklist']['created_date'] = date('Y-m-d H:i:s');
+			$this->request->data['DocumentChecklist']['company_id'] = $user['User']['company_id'];
+
 			$this->DocumentChecklist->create();
 			if ($this->DocumentChecklist->save($this->request->data)) {
 				$this->Session->setFlash('The document checklist has been saved.', '', array(), 'success');
-				return $this->redirect(array('action' => 'index'));
+				if ($this->request->data['submit'] =="add_cont") {
+					return $this->redirect(array('action' => 'add'));
+				}else{
+					return $this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash('The document checklist could not be saved. Please, try again.', '', array(), 'fail');
 			}
@@ -66,10 +81,14 @@ class DocumentChecklistsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$user_id = $this->Auth->user('id');
 		if (!$this->DocumentChecklist->exists($id)) {
 			throw new NotFoundException(__('Invalid document checklist'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			$this->request->data['DocumentChecklist']['id'] = $id;
+			$this->request->data['DocumentChecklist']['updated_by'] = $user_id;
+			$this->request->data['DocumentChecklist']['updated_date'] = date('Y-m-d H:i:s');
 			if ($this->DocumentChecklist->save($this->request->data)) {
 				$this->Session->setFlash('The document checklist has been saved.', '', array(), 'success');
 				return $this->redirect(array('action' => 'index'));
@@ -90,12 +109,14 @@ class DocumentChecklistsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$user_id = $this->Auth->user('id');
 		$this->DocumentChecklist->id = $id;
 		if (!$this->DocumentChecklist->exists()) {
 			throw new NotFoundException(__('Invalid document checklist'));
 		}
 		// $this->request->allowMethod('post', 'delete');
-		if ($this->DocumentChecklist->delete()) {
+		$docarray = array('id'=> $id, 'deleted_status' => 'Yes', 'deleted_by'=>$user_id, 'deleted_date'=>date('Y-m-d H:i:s'));
+		if($this->DocumentChecklist->save($docarray)){
 			$this->Session->setFlash('The document checklist has been deleted.', '', array(), 'success');
 		} else {
 			$this->Session->setFlash('The document checklist could not be deleted. Please, try again.', '', array(), 'fail');

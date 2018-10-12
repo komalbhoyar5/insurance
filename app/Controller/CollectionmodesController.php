@@ -28,7 +28,8 @@ class CollectionmodesController extends AppController {
 	public function index() {
 		$this->layout = "backend_template";
 		$this->Collectionmode->recursive = 0;
-		$this->set('collectionmodes', $this->Collectionmode->find('all'));
+		$collection = $this->Collectionmode->find('all', array('conditions'=>array('deleted_status'=>'No')));
+		$this->set('collectionmodes', $collection);
 	}
 
 /**
@@ -88,11 +89,16 @@ class CollectionmodesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$user_id = $this->Auth->user('id');
 		$this->layout = "backend_template";
 		if (!$this->Collectionmode->exists($id)) {
 			throw new NotFoundException(__('Invalid collectionmode'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			$this->request->data['Collectionmode']['id'] = $id;
+			$this->request->data['Collectionmode']['updated_by'] = $user_id;
+			$this->request->data['Collectionmode']['updated_date'] = date('Y-m-d H:i:s');
+			
 			if ($this->Collectionmode->save($this->request->data)) {
 				$this->Session->setFlash('The collectionmode has been saved.', '', array(), 'success');
 				return $this->redirect(array('action' => 'index'));
@@ -113,12 +119,14 @@ class CollectionmodesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$user_id = $this->Auth->user('id');
 		$this->Collectionmode->id = $id;
 		if (!$this->Collectionmode->exists()) {
 			throw new NotFoundException(__('Invalid collectionmode'));
 		}
 		// $this->request->allowMethod('post', 'delete');
-		if ($this->Collectionmode->delete()) {
+		$collection = array('id'=> $id, 'deleted_status' => 'Yes', 'deleted_by'=>$user_id, 'deleted_date'=>date('Y-m-d H:i:s'));
+		if ($this->Collectionmode->save($collection)) {
 			$this->Session->setFlash('The collectionmode has been deleted.', '', array(), 'success');
 		} else {
 			$this->Session->setFlash('The collectionmode could not be deleted. Please, try again.', '', array(), 'fail');

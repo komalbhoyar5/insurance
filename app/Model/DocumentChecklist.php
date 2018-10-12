@@ -44,8 +44,6 @@ class DocumentChecklist extends AppModel {
 	);
 
 	function checkUniquetitle($data) {
-		print_r($this->data[$this->alias]);
-		exit();
 		if (isset($this->data[$this->alias]['id'])) {
 		    $isUnique = $this->find(
 		                'first',
@@ -56,7 +54,8 @@ class DocumentChecklist extends AppModel {
 		                    ),
 		                    'conditions' => array(
 		                        'DocumentChecklist.title' => $this->data[$this->alias]['title'],
-		                        'DocumentChecklist.id !=' => $this->data[$this->alias]['id']
+		                        'DocumentChecklist.id !=' => $this->data[$this->alias]['id'],
+		                        'DocumentChecklist.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -69,7 +68,8 @@ class DocumentChecklist extends AppModel {
 		            'DocumentChecklist.title'
 		                    ),
 		                    'conditions' => array(
-		                        'DocumentChecklist.title' => $this->data[$this->alias]['title']
+		                        'DocumentChecklist.title' => $this->data[$this->alias]['title'],
+		                        'DocumentChecklist.deleted_status' => "No"
 		                    )
 		                )
 	        	);

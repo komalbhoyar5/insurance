@@ -47,7 +47,8 @@ class Agenttype extends AppModel {
 		                    ),
 		                    'conditions' => array(
 		                        'Agenttype.title' => $this->data[$this->alias]['title'],
-		                        'Agenttype.id !=' => $this->data[$this->alias]['id']
+		                        'Agenttype.id !=' => $this->data[$this->alias]['id'],
+		                        'Agenttype.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -60,7 +61,8 @@ class Agenttype extends AppModel {
 		            'Agenttype.title'
 		                    ),
 		                    'conditions' => array(
-		                        'Agenttype.title' => $this->data[$this->alias]['title']
+		                        'Agenttype.title' => $this->data[$this->alias]['title'],
+		                        'Agenttype.deleted_status' => "No"
 		                    )
 		                )
 	        	);

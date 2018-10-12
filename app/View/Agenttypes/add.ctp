@@ -30,8 +30,9 @@
                                     ?>
                                 </div>
 								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-primary">Reset</button>
+									<a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
 								</div>
                             </form>
                         </div>

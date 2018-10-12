@@ -84,7 +84,8 @@ class FuneralParlor extends AppModel {
 		                    ),
 		                    'conditions' => array(
 		                        'FuneralParlor.parlor_name' => $this->data[$this->alias]['parlor_name'],
-		                        'FuneralParlor.id !=' => $this->data[$this->alias]['id']
+		                        'FuneralParlor.id !=' => $this->data[$this->alias]['id'],
+		                        'FuneralParlor.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -97,7 +98,8 @@ class FuneralParlor extends AppModel {
 		            'FuneralParlor.parlor_name'
 		                    ),
 		                    'conditions' => array(
-		                        'FuneralParlor.parlor_name' => $this->data[$this->alias]['parlor_name']
+		                        'FuneralParlor.parlor_name' => $this->data[$this->alias]['parlor_name'],
+		                        'FuneralParlor.deleted_status' => "No"
 		                    )
 		                )
 	        	);
