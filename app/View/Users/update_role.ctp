@@ -51,15 +51,16 @@
                                                 'label' => false,
                                                 'type' => 'radio',
                                                 'legend' => false,
+                                                'required' => true,
                                                 'options' => array('Yes' =>'Yes', 'No' => 'No')
                                             )
                                         );
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-12">
-									<button type="reset" class="btn btn-primary pull-right">Reset</button>
-                                    <?php echo $this->Form->end(array('label' => 'Submit', 'class' => 'btn btn-primary pull-right','div'=>false)); ?>
-								</div>
+                                    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
+                                </div>
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->

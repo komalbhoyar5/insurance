@@ -77,7 +77,11 @@ class UsersController extends AppController {
 			$this->request->data['Group']['modified'] = date('Y-m-d h:i:s a');
 			if ($this->Group->save($this->request->data)) {
 				$this->Session->setFlash('New role created.', '', array(), 'success');
-				return $this->redirect(array('controller' => 'users','action' => 'role'));
+				if ($this->request->data['submit'] =="add_cont") {
+					return $this->redirect(array('controller' => 'users','action' => 'add_role'));
+				}else{
+					return $this->redirect(array('controller' => 'users','action' => 'role'));
+				}
 			} else {
 				$this->Session->setFlash('Role could not be saved. Please, try again.', '', array(), 'fail');
 			}
@@ -93,6 +97,7 @@ class UsersController extends AppController {
 			$this->request->data['Group']['modified'] = date('Y-m-d h:i:s a');
 			if ($this->Group->save($this->request->data)) {
 				$this->Session->setFlash('Updated successfully.', '', array(), 'success');
+				return $this->redirect(array('controller' => 'users','action' => 'role'));
 			} else {
 				$this->Session->setFlash('Role could not be saved. Please, try again.', '', array(), 'fail');
 			}

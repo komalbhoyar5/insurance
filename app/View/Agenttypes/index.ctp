@@ -67,7 +67,7 @@
 											                       		if (in_array('agenttypes/delete', array_column($childs, 'page_action'))) {
 											                       	?>
 																	<li>
-																		<a class="dropdown-item" type="button" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+																		<a class="dropdown-item" type="button" data-toggle="modal" data-target="#<?php echo $agenttype['Agenttype']['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
 																	</li>
 																	<?php } ?>
 																</ul>
@@ -78,6 +78,19 @@
 												}
 												?>
 											</tr>
+											<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="<?php echo $agenttype['Agenttype']['id']; ?>">
+											  <div class="modal-dialog modal-sm">
+												<div class="modal-content">
+												  <div class="delet-div">
+													<p>Are you sure to delete?</p>
+													<div class="delet-btn align-right">
+														<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+														<a type="button" href="<?php echo $this->webroot; ?>agenttypes/delete/<?php echo $agenttype['Agenttype']['id']; ?>" class="btn btn-danger">Delete</a>
+													</div>
+												  </div>
+												</div>
+											  </div>
+											</div>
 										<?php $count++; } ?>
 									</tbody>
 								</table>
@@ -92,19 +105,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-	<div class="modal-content">
-	  <div class="delet-div">
-		<p>Are you sure to delete date?</p>
-		<div class="delet-btn align-right">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
-			<a type="button" href="<?php echo $this->webroot; ?>agenttypes/delete/<?php echo $agenttype['Agenttype']['id']; ?>" class="btn btn-danger">Delete</a>
-		</div>
-	  </div>
-	</div>
-  </div>
-</div>
+
 <?php echo $this->element('footer'); ?>
 <?php echo $this->Html->script('../admin/js/plugins/dataTables/datatables.min.js'); ?>
     <!-- Page-Level Scripts -->

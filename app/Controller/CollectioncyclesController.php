@@ -50,7 +50,6 @@ class CollectioncyclesController extends AppController {
 		$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
 										 'fields'=>array('company_id')
 										));
-		$this->layout = "backend_template";
 		if ($this->request->is('post')) {
 			
 			$this->Collectioncycle->create();

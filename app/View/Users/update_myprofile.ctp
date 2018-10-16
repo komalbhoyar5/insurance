@@ -153,8 +153,8 @@
                                                         'class' => 'form-control',
                                                         'label' => false,
                                                         'id' => 'city',
-                                                        'options' => isset($city) ? $city : '',
-                                                        'empty'=> 'Select city'
+                                                        // 'options' => isset($city) ? $city : '',
+                                                        // 'empty'=> 'Select city'
                                                     )
                                                 );
                                             ?>

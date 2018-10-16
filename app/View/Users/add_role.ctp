@@ -1,7 +1,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Role</h1>
+            <h1 class="page-header"><a href="<?php echo $pagetitlelink; ?>"><?php echo $parenttitle; ?></a></h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -51,16 +51,18 @@
                                                 'label' => false,
                                                 'type' => 'radio',
                                                 'legend' => false,
+                                                'required' => true,
                                                 'options' => array('Yes' =>'Yes', 'No' => 'No')
                                             )
                                         );
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-12">
-									<button type="reset" class="btn btn-primary pull-right">Reset</button>
-                                    <?php echo $this->Form->end(array('label' => 'Submit', 'class' => 'btn btn-primary pull-right','div'=>false)); ?>
-								</div>
-                            </form>
+                                    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
+                                </div>
+                            <?php echo $this->Form->end(); ?>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
                     </div>

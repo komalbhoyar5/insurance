@@ -58,10 +58,14 @@ class PermissionsController extends AppController {
 				$this->request->data['Permission']['parent_id'] = 0;
 			}
 			if ($this->Permission->save($this->request->data)) {
-				$this->Session->setFlash('The permission has been saved.', '', array(), 'success');
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('The role permission has been saved.', '', array(), 'success');
+				if ($this->request->data['submit'] =="add_cont") {
+					return $this->redirect(array('action' => 'add'));
+				}else{
+					return $this->redirect(array('action' => 'index'));
+				}
 			} else {
-				$this->Session->setFlash('The permission could not be saved. Please, try again.', '', array(), 'fail');
+				$this->Session->setFlash('The role permission could not be saved. Please, try again.', '', array(), 'fail');
 			}
 		}
 		$groups = $this->Permission->Group->find('list');
@@ -88,10 +92,10 @@ class PermissionsController extends AppController {
 				$this->request->data['Permission']['parent_id'] = 0;
 			}
 			if ($this->Permission->save($this->request->data)) {
-				$this->Session->setFlash('The permission has been saved.', '', array(), 'success');
+				$this->Session->setFlash('The role permission has been saved.', '', array(), 'success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('The permission could not be saved. Please, try again.', '', array(), 'fail');
+				$this->Session->setFlash('The role permission could not be saved. Please, try again.', '', array(), 'fail');
 			}
 		} else {
 			$options = array('conditions' => array('Permission.' . $this->Permission->primaryKey => $id));
@@ -115,11 +119,11 @@ class PermissionsController extends AppController {
 		if (!$this->Permission->exists()) {
 			throw new NotFoundException(__('Invalid permission'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		// $this->request->allowMethod(	'post', 'delete');
 		if ($this->Permission->delete()) {
-			$this->Session->setFlash('The permission has been deleted.', '', array(), 'success');
+			$this->Session->setFlash('The role permission has been deleted.', '', array(), 'success');
 		} else {
-			$this->Session->setFlash('The permission could not be deleted. Please, try again.', '', array(), 'fail');
+			$this->Session->setFlash('The role permission could not be deleted. Please, try again.', '', array(), 'fail');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

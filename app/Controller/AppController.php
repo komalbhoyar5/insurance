@@ -118,6 +118,9 @@ class AppController extends Controller {
 											WHERE groups.id = 
 											'. $user_group_id .' ORDER BY Permission.id');
 			$trees = $this->buildTree($perm);
+			// echo "<pre>";
+			// print_r($trees);
+			// exit();
 			$this->set('perm', $trees);
 		}
 

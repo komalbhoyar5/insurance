@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Role permission</h1>
+            <h1 class="page-header"><a href="<?php echo $pagetitlelink; ?>"><?php echo $parenttitle; ?></a></h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Add role permission
+                    <?php echo $title; ?>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -48,7 +48,7 @@
                                         echo $this->Form->input(
                                             'parent_id',
                                             array(
-                                                'class' => 'form-control',
+                                                'class' => 'chosen-select form-control',
                                                 'label' => false,
                                                 'empty' => 'Choose parent module'
                                             )
@@ -68,10 +68,11 @@
                                         );
                                     ?>
                                 </div>
-								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-primary">Reset</button>
-								</div>
+                                <div class="form-group col-sm-12">
+								    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
+                                </div>
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
@@ -92,25 +93,4 @@
 // Search client script
     $('.chosen-select').chosen({width: "100%"});
 </script>
-<div class="permissions form">
-<?php echo $this->Form->create('Permission'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Permission'); ?></legend>
-	<?php
-		echo $this->Form->input('page_name');
-		echo $this->Form->input('page_action');
-		echo $this->Form->input('parent_id');
-		echo $this->Form->input('Group');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Permissions'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-	</ul>
-</div>

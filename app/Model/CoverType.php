@@ -28,6 +28,11 @@ class CoverType extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'isUnique' => array(
+				'rule' => array('checkUniquetitle'),
+				'required' => 'create',
+				'message' => 'This title already exists'
+			)
 		),
 		'desc' => array(
 			'notEmpty' => array(
@@ -47,12 +52,13 @@ class CoverType extends AppModel {
 		                'first',
 		                array(
 		                    'fields' => array(
-		                        'Collectionmode.id',
-		            'Collectionmode.title'
+		                        'CoverType.id',
+		            'CoverType.title'
 		                    ),
 		                    'conditions' => array(
-		                        'Collectionmode.title' => $this->data[$this->alias]['title'],
-		                        'Collectionmode.id !=' => $this->data[$this->alias]['id']
+		                        'CoverType.title' => $this->data[$this->alias]['title'],
+		                        'CoverType.id !=' => $this->data[$this->alias]['id'],
+		                        'CoverType.deleted_status' => "No"
 		                    )
 		                )
 		        );
@@ -61,11 +67,12 @@ class CoverType extends AppModel {
 	                'first',
 	                array(
 	                    'fields' => array(
-	                        'Collectionmode.id',
-		            'Collectionmode.title'
+	                        'CoverType.id',
+		            'CoverType.title'
 		                    ),
 		                    'conditions' => array(
-		                        'Collectionmode.title' => $this->data[$this->alias]['title']
+		                        'CoverType.title' => $this->data[$this->alias]['title'],
+		                        'CoverType.deleted_status' => "No"
 		                    )
 		                )
 	        	);

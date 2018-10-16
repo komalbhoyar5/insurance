@@ -82,9 +82,9 @@
 											  <div class="modal-dialog modal-sm">
 												<div class="modal-content">
 												  <div class="delet-div">
-													<p>Are you sure to delete date?</p>
+													<p>Are you sure to delete?</p>
 													<div class="delet-btn align-right">
-														<button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
+														<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
 														<a type="button" href="<?php echo $this->webroot; ?>collectioncycles/delete/<?php echo $collectioncycle['Collectioncycle']['id']; ?>" class="btn btn-danger">Delete</a>
 													</div>
 												  </div>
