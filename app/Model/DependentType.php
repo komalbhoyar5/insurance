@@ -34,12 +34,12 @@ class DependentType extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'isUnique' => array(
+				'rule' => array('checkUniquetitle'),
+				'required' => 'create',
+				'message' => 'This title already exists'
 			)
-			// 'isUnique' => array(
-			// 	'rule' => array('checkUniquetitle'),
-			// 	'required' => 'create',
-			// 	'message' => 'This title already exists'
-			// )
 		),
 		'min_age' => array(
 			'numeric' => array(

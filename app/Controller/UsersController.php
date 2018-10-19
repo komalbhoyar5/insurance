@@ -291,14 +291,22 @@ class UsersController extends AppController {
 		
 		public function change_password() {
 			$this->layout = "backend_template";
+			$validatePassword = "";
 			if ($this->request->is(array('post','put'))) {
-				$this->request->data['User']['id'] = $this->Auth->user('id');
-				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('Password updated successfully.', '', array(), 'success');
-				} else {
-					$this->Session->setFlash('The passwords you entered do not match.', '', array(), 'fail');
+				$validatePassword = $this->User->validatePassword($this->request->data['User']);
+				if ($validatePassword == "true") {
+					if ($this->User->save($this->request->data)) {
+						$this->Session->setFlash('Password updated successfully.', '', array(), 'success');
+					} else {
+						$this->Session->setFlash('Unable to change password, please try again.', '', array(), 'fail');
+					}
+					$this->set('validatePassword', "");
+				}else{
+					$this->set('validatePassword', $validatePassword);
+					$this->Session->setFlash('Unable to change password, please try again.', '', array(), 'fail');
 				}
-				$this->redirect(array('controller'=>'users', 'action'=>'change_password'));
+			}else{
+					$this->set('validatePassword', "");
 			}
 		}
 	// ==================================== Profile section =========================== //

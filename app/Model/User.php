@@ -21,7 +21,6 @@ class User extends AppModel {
 			),
 			'isUnique' => array(
 				'rule' => array('checkUniquecode'),
-				'required' => 'create',
 				'message' => 'This code already exists'
 			)
 		),
@@ -53,14 +52,16 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'notEmpty' => array(
-				// 'required' => 'create',
-				'on' => 'create',
 				'rule' => array('notEmpty'),
 				'message' => 'Password Cannot be Empty',
 			),
 			'length' => array(
-		        'rule'      => array('between', 6, 40),
-		        'message'   => 'Your password must be between 6 to 40 characters.'
+		        'rule'      => array('between', 8, 40),
+		        'message'   => 'Your password must be between 8 to 40 characters.'
+		    ),
+		    'validatep' => array(
+		        'rule'      => array('validate_respasswords'),
+		        'message'   => 'Your password must have 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.'
 		    )
 		),
 		'confirm_password' => array(
@@ -70,24 +71,46 @@ class User extends AppModel {
 	
 			),
 			'length' => array(
-		        'rule'      => array('between', 6, 40),
-		        'message'   => 'Your password must be between 6 to 40 characters.'
+		        'rule'      => array('between', 8, 40),
+		        'message'   => 'Your password must be between 8 to 40 characters.'
 		    ),
-		    'compare'    => array(
-		        'rule'      => array('validate_respasswords'),
-		        'message' => 'The passwords you entered do not match.'
-		    )
+		    // 'compare'    => array(
+		    //     'rule'      => array('validate_respasswords'),
+		    //     'message' => 'The passwords you entered do not match.'
+		    // )
 		)
 	);
 	
 	public function validate_respasswords() {
 		if ($this->data[$this->alias]['password'] != $this->data[$this->alias]['confirm_password']) {
-	    	return "Password do not match";
-	    }else{
+	    	return false;
+	    }
+	    else{
 	    	return true;
 	    }
 	}
 
+	public function validatePassword($user){
+		// echo "string";($user['password']);
+		if ($user['password'] == "") {
+			return "Password can not be empty";
+		}
+		elseif ( $user['confirm_password'] == "") {
+			return "Confirm password can not be empty";
+		}
+		else if ($user['password'] != $user['confirm_password']) {
+	    	return "The passwords you entered do not match.";
+	    }
+	    elseif (strlen($user['password']) < 8) {
+	    	return "Your password must contain more than 8 character.";
+	    }
+		else if(!preg_match('$\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $user['password'])){
+	    	return "Your password must have 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.";
+	    }
+	    else{
+	    	return "true";
+	    }
+	}
 	/* Check For API Login access*/
 	public function login_Api_Rest($data = NULL){
 		if($data == NULL)

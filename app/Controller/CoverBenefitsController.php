@@ -54,10 +54,11 @@ class CoverBenefitsController extends AppController {
 		$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
 										 'fields'=>array('company_id')
 										));
+		
 		if ($this->request->is('post')) {
-			$this->request->data['coverBenefit']['created_by'] = $user_id;
-			$this->request->data['coverBenefit']['created_date'] = date('Y-m-d H:i:s');
-			$this->request->data['coverBenefit']['company_id'] = $user['User']['company_id'];
+			$this->request->data['CoverBenefit']['created_by'] = $user_id;
+			$this->request->data['CoverBenefit']['created_date'] = date('Y-m-d H:i:s');
+			$this->request->data['CoverBenefit']['company_id'] = $user['User']['company_id'];
 			$this->CoverBenefit->create();
 			if ($this->CoverBenefit->save($this->request->data)) {
 				$this->Session->setFlash('The cover benefit has been saved.', '', array(), 'success');

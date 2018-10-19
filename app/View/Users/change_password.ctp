@@ -16,16 +16,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php echo $this->Form->create('User', array( 'action' => "change_password", 'class'=>"form-box")); ?>
+                            <?php echo $this->Form->create('User', array('class'=>"form-box")); ?>
                                 <div class="form-group col-sm-12">
-                                    <label>Password</label>
+                                    <label>New password</label>
                                     <?php
                                         echo $this->Form->input(
-                                            'password',
+                                            'User.password',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
-                                                'placeholder' => "New Password"
+                                                // 'placeholder' => "New Password"
                                             )
                                         );
                                     ?>
@@ -34,19 +34,21 @@
                                     <label>Confirm password</label>
                                     <?php
                                         echo $this->Form->input(
-                                            'confirm_password',
+                                            'User.confirm_password',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
                                                 'type' => 'password',
-                                                'placeholder' => "Confirm Password"
+                                                // 'placeholder' => "Confirm Password"
                                             )
                                         );
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                    <div class="error-message"><?php echo $validatePassword; ?></div>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <button type="submit" class="btn btn-primary">save</button>
                                 </div>
                             <?php echo $this->Form->end(); ?>
                         </div>

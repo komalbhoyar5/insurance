@@ -38,7 +38,7 @@ class FuneralParlor extends AppModel {
 			'isUnique' => array(
 				'rule' => array('checkUniqueparlor_name'),
 				'required' => 'create',
-				'message' => 'This parlor_name already exists'
+				'message' => 'This parlor name already exists'
 			)
 		),
 		'address' => array(

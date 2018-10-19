@@ -34,7 +34,7 @@
                                     <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
                                     <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
 								</div>
-                            </form>
+                            <?php echo $this->Form->end(); ?>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
                     </div>
