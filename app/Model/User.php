@@ -4,6 +4,7 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 	public $displayField = 'email';
+ 	public $actsAs = array('Containable');
 
 	public $belongsTo = array(
         'Group' => array(
@@ -17,7 +18,7 @@ class User extends AppModel {
 		'code' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'First name Cannot be Empty',
+				'message' => 'First name can not be Empty',
 			),
 			'isUnique' => array(
 				'rule' => array('checkUniquecode'),
@@ -27,19 +28,29 @@ class User extends AppModel {
 		'f_name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'First name Cannot be Empty',
+				'message' => 'First name can not be Empty',
 			)
 		),
 		'l_name' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Last name Cannot be Empty',
+				'message' => 'Last name can not be Empty',
 			)
+		),
+		'mobile_no' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Mobile number can not be Empty',
+			),
+			'validatep' => array(
+		        'rule'      => array('validate_mobile'),
+		        'message'   => 'Invalid mobile number'
+		    )
 		),
 		'email' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Email ID Cannot be Empty',
+				'message' => 'Email ID can not be Empty',
 			),
 			'email' => array(
 				'rule' => array('email'),
@@ -53,11 +64,11 @@ class User extends AppModel {
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Password Cannot be Empty',
+				'message' => 'Password can not be Empty',
 			),
 			'length' => array(
 		        'rule'      => array('between', 8, 40),
-		        'message'   => 'Your password must be between 8 to 40 characters.'
+		        'message'   => 'Your password must contain more than 8 character.'
 		    ),
 		    'validatep' => array(
 		        'rule'      => array('validate_respasswords'),
@@ -67,31 +78,38 @@ class User extends AppModel {
 		'confirm_password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Password Cannot be Empty',
+				'message' => 'Password can not be Empty',
 	
 			),
 			'length' => array(
 		        'rule'      => array('between', 8, 40),
-		        'message'   => 'Your password must be between 8 to 40 characters.'
+		        'message'   => 'Your password must contain more than 8 character.'
 		    ),
-		    // 'compare'    => array(
-		    //     'rule'      => array('validate_respasswords'),
-		    //     'message' => 'The passwords you entered do not match.'
-		    // )
+		    'compare'    => array(
+		        'rule'      => array('compare_pass'),
+		        'message' => 'The passwords you entered do not match.'
+		    )
 		)
 	);
 	
-	public function validate_respasswords() {
-		if ($this->data[$this->alias]['password'] != $this->data[$this->alias]['confirm_password']) {
+	public function compare_pass() {
+		if ($this->data[$this->alias]['password'] != $user['confirm_password']) {
 	    	return false;
-	    }
-	    else{
+	    }else{
 	    	return true;
 	    }
 	}
 
+	public function validate_respasswords() {
+		return preg_match('$\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $this->data[$this->alias]['password']);
+	}
+
+	public function validate_mobile(){
+	    return preg_match('/^[0-9]{10}+$/', $this->data[$this->alias]['mobile_no']);
+	}
+
 	public function validatePassword($user){
-		// echo "string";($user['password']);
+		// echo "string";($this->data[$this->alias]['password']);
 		if ($user['password'] == "") {
 			return "Password can not be empty";
 		}

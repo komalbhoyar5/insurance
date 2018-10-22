@@ -19,7 +19,7 @@
                         <div class="col-lg-12">
                             <?php echo $this->Form->create('User', array('id' => 'employee')); ?>
                                 <div class="form-group col-sm-6">
-                                    <label>Employee Code</label>
+                                    <label>Employee Code<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'code',
@@ -30,8 +30,8 @@
                                         );
                                     ?>
                                 </div>
-								<div class="form-group col-sm-6">
-                                    <label>First name</label>
+                                <div class="form-group col-sm-6">
+                                    <label>First name<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'f_name',
@@ -42,8 +42,10 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
-                                    <label>Last name</label>
+                                    <label>Last name<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'l_name',
@@ -55,10 +57,10 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Contact Number</label>
+                                    <label>Contact Number<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
-                                            'contact_no',
+                                            'mobile_no',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
@@ -66,7 +68,9 @@
                                         );
                                     ?>
                                 </div>
-								<div class="form-group  col-sm-12">
+                        </div>
+                        <div class="col-lg-12">
+                                <div class="form-group  col-sm-12">
                                     <label>Address</label>
                                     <?php
                                         echo $this->Form->input(
@@ -78,7 +82,9 @@
                                             )
                                         );
                                     ?>
-								</div>
+                                </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
                                     <label>Role</label>
                                     <?php
@@ -105,8 +111,10 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
-                                    <label>Username</label>
+                                    <label>Username<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'email',
@@ -118,8 +126,8 @@
                                         );
                                     ?>
                                 </div>
-								<div class="form-group col-sm-6">
-                                    <label>Password</label>
+                                <div class="form-group col-sm-6">
+                                    <label>Password<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'password',
@@ -133,10 +141,10 @@
                                         );
                                     ?>
                                 </div>
-								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-primary">Reset</button>
-								</div>
+                                <div class="form-group col-sm-12">
+                                    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
+                                </div>
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->

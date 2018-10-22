@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	// var $components = array('Auth', 'Acl');
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('login','register','forgot_password','reset_password');
+		$this->Auth->allow('login','register','forgot_password','reset_password','getstate','getcity');
 	}
 	public function isAuthorized($user) {
 		parent::isAuthorized($user);
@@ -29,8 +29,17 @@ class UsersController extends AppController {
 		$this->layout = "login_backend";
 		if($this->request->is('post')) {
 			if($this->Auth->login()) {
-				$this->Session->setFlash('Login successfully!', '', array(), 'Success');
-				$this->redirect($this->Auth->redirect());
+				$user = $this->Auth->user();
+				if ($this->Auth->user('deleted_status') == "Yes") {
+					$this->Session->setFlash('Your account is deleted by admin', '', array(), 'fail');
+					echo "string";
+				}
+				else if($this->Auth->user('status') != "Active"){
+					$this->Session->setFlash('Your account is not active, please contact to your admin.', '', array(), 'fail');
+				}else{
+					$this->Session->setFlash('Login successfully!', '', array(), 'Success');
+					$this->redirect($this->Auth->redirect());
+				}
 			}
 			else {
 				$this->Session->setFlash('Username or Password do not Match', '', array(), 'fail');
@@ -196,29 +205,49 @@ class UsersController extends AppController {
 	}
 	// ==================================== employee section ========================== //
 		public function employee(){
-			$this->layout = "backend_template";
-			$users = $this->User->find('all', array('conditions' => array('is_employee'=> 'yes')));
+			$this->loadmodel('User');
+			$this->loadModel('Group');
+			$user_id = $this->Auth->user('id');
+			$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
+										 'fields'=>array('company_id')
+										));
+			// $this->User->recursive = 0;
+
+			$users = $this->User->find('all', array('conditions' => array('User.deleted_status'=>'No', 'User.company_id'=>$user['User']['company_id'], 'Group.is_employee' => 'Yes')
+													));
 			$this->set('users', $users);
 		}
 		public function add_employee(){
-			$this->layout = "backend_template";
+			$continue = array();
+			$this->loadmodel('User');
+			$user_id = $this->Auth->user('id');
+			$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
+										 'fields'=>array('company_id')
+										));
 			$this->loadModel('Group');
 			if ($this->request->is('post')) {
 				$this->User->create();
 				$this->request->data['User']['created_date'] = date('Y-m-d');
-				$this->request->data['Group']['modified_date'] = date('Y-m-d');
+				$this->request->data['User']['created_by'] = $user_id;
+				$this->request->data['User']['created_date'] = date('Y-m-d H:i:s');
+				$this->request->data['User']['company_id'] = $user['User']['company_id'];
+
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('The employee has been saved.', '', array(), 'success');
-					$this->redirect(array('controller'=>'users', 'action'=>'employee'));
+					$this->Session->setFlash('The user has been saved.', '', array(), 'success');
+					if ($this->request->data['submit'] =="add_cont") {
+						return $this->redirect(array('action' => 'add_employee'));
+					}else{
+						$this->redirect(array('controller'=>'users', 'action'=>'employee'));
+					}
 				} else {
-					$this->Session->setFlash('The employee could not be saved. Please, try again.', '', array(), 'fail');
+					$this->Session->setFlash('The user could not be saved. Please, try again.', '', array(), 'fail');
 				}
 			}
 			$groups = $this->Group->find('list', array('conditions'=> array('is_employee' => 'Yes')));
 			$this->set('groups', $groups);
 		}
 		public function update_employee($id) {
-			$this->layout = "backend_template";
+			$user_id = $this->Auth->user('id');
 			$this->loadModel('Group');
 			if ($this->request->is(array('post','put'))) {
 				
@@ -226,12 +255,14 @@ class UsersController extends AppController {
 					unset($this->request->data['User']['password']);
 				}
 				$this->request->data['User']['id'] = $id;
-				$this->request->data['User']['modified_date'] = date('Y-m-d');
+				$this->request->data['User']['updated_by'] = $user_id;
+				$this->request->data['User']['updated_date'] = date('Y-m-d H:i:s');
+
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('The employee has been saved.', '', array(), 'success');
+					$this->Session->setFlash('The user has been saved.', '', array(), 'success');
 					$this->redirect(array('controller'=>'users', 'action'=>'employee'));
 				} else {
-					$this->Session->setFlash('The employee could not be saved. Please, try again.', '', array(), 'fail');
+					$this->Session->setFlash('The user could not be saved. Please, try again.', '', array(), 'fail');
 				}
 			}
 			$groups = $this->Group->find('list', array('conditions'=> array('is_employee' => 'Yes')));
@@ -246,10 +277,11 @@ class UsersController extends AppController {
 				throw new NotFoundException(__('Invalid User'));
 			}
 
-			if ($this->User->delete()) {
-				$this->Session->setFlash('The employee data has been deleted.', '', array(), 'success');
+			$user = array('id'=> $id, 'deleted_status' => 'Yes', 'deleted_by'=>$user_id, 'deleted_date'=>date('Y-m-d H:i:s'));
+			if($this->User->save($user)){
+				$this->Session->setFlash('The user has been deleted.', '', array(), 'success');
 			} else {
-				$this->Session->setFlash('The employee data could not be deleted. Please, try again.', '', array(), 'fail');
+				$this->Session->setFlash('The user could not be deleted. Please, try again.', '', array(), 'fail');
 			}
 		return $this->redirect(array('controller' => 'users','action' => 'employee'));
 		}
@@ -269,7 +301,8 @@ class UsersController extends AppController {
 			$id = $this->Auth->user('id');
 			if ($this->request->is(array('post','put'))) {
 				$this->request->data['User']['id'] = $id;
-				$this->request->data['User']['modified_date'] = date('Y-m-d');
+				$this->request->data['User']['updated_by'] = $id;
+				$this->request->data['User']['updated_date'] = date('Y-m-d H:i:s');
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash('Your profile has been saved.', '', array(), 'success');
 				} else {
@@ -295,6 +328,7 @@ class UsersController extends AppController {
 			if ($this->request->is(array('post','put'))) {
 				$validatePassword = $this->User->validatePassword($this->request->data['User']);
 				if ($validatePassword == "true") {
+					$this->request->data['User']['id'] = $this->Auth->user('id');
 					if ($this->User->save($this->request->data)) {
 						$this->Session->setFlash('Password updated successfully.', '', array(), 'success');
 					} else {

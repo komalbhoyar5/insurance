@@ -31,9 +31,9 @@
 											<th>Code</th>
 											<th>Name</th>
 											<th>Address</th>
-											<th>Contact</th>
-											<th>Username</th>
-											<th>RoleID</th>
+											<th>Contact no.</th>
+											<th>Email id</th>
+											<th>Role</th>
 											<th>Status</th>
 											<th class="action"></th>
 										</tr>
@@ -48,7 +48,7 @@
 												<td><?php echo $user['User']['code']; ?></td>
 												<td><?php echo ucwords($user['User']['f_name'] .' '. $user['User']['l_name']); ?></td>
 												<td><?php echo $user['User']['address1'].' '.$user['User']['address2']; ?></td>
-												<td><?php echo $user['User']['contact_no']; ?></td>
+												<td><?php echo $user['User']['mobile_no']; ?></td>
 												<td><?php echo $user['User']['email']; ?></td>
 												<td><?php echo $user['Group']['name']; ?></td>
 												<td><?php echo $user['User']['status']; ?></td>
@@ -77,7 +77,7 @@
 										                       		if (in_array('users/delete_employee', array_column($childs, 'page_action'))) {
 										                       	?>
 																<li>
-																	<a class="dropdown-item" type="button" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+																	<a class="dropdown-item" type="button" data-toggle="modal" data-target="#<?php echo $user['User']['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
 																</li>
 																<?php } ?>
 															</ul>
@@ -85,6 +85,19 @@
 													</div>
 												</td>
 											</tr>
+											<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="<?php echo $user['User']['id']; ?>">
+											  <div class="modal-dialog modal-sm">
+												<div class="modal-content">
+												  <div class="delet-div">
+													<p>Are you sure to delete?</p>
+													<div class="delet-btn align-right">
+														<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+														<a type="button" href="<?php echo $this->webroot; ?>users/delete_employee/<?php echo $user['User']['id']; ?>" class="btn btn-danger">Delete</a>
+													</div>
+												  </div>
+												</div>
+											  </div>
+											</div>
 										<?php $count++; } ?>
 									</tbody>
 								</table>
@@ -99,19 +112,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-	<div class="modal-content">
-	  <div class="delet-div">
-		<p>Are you sure to delete employee?</p>
-		<div class="delet-btn align-right">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
-			<a type="button" class="btn btn-danger" href="<?php echo $this->webroot; ?>users/delete_employee/<?php echo $user['User']['id']; ?>">Delete</a>
-		</div>
-	  </div>
-	</div>
-  </div>
-</div>
+
 <?php echo $this->element('footer'); ?>
 <?php echo $this->Html->script('../admin/js/plugins/dataTables/datatables.min.js'); ?>
     <!-- Page-Level Scripts -->

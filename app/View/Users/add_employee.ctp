@@ -17,7 +17,7 @@
                 <div class="panel-body">
 					<div class="row">
                         <div class="col-lg-12">
-                            <?php echo $this->Form->create('User', array('id' => 'employee')); ?>
+                            <?php echo $this->Form->create('User', array('id' => 'employee','autocomplete' => 'off')); ?>
                                 <div class="form-group col-sm-6">
                                     <label>Employee Code<span>*</span></label>
                                     <?php
@@ -42,6 +42,8 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
                                     <label>Last name<span>*</span></label>
                                     <?php
@@ -55,10 +57,10 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Contact Number</label>
+                                    <label>Contact Number<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
-                                            'contact_no',
+                                            'mobile_no',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
@@ -66,6 +68,8 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
 								<div class="form-group  col-sm-12">
                                     <label>Address</label>
                                     <?php
@@ -79,6 +83,8 @@
                                         );
                                     ?>
 								</div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
                                     <label>Role</label>
                                     <?php
@@ -105,6 +111,8 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
                                     <label>Username<span>*</span></label>
                                     <?php
@@ -126,15 +134,17 @@
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
-                                                'type' => 'password'
+                                                'type' => 'password',
+                                                
                                             )
                                         );
                                     ?>
                                 </div>
 								<div class="form-group col-sm-12">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-primary">Reset</button>
-								</div>
+                                    <a href="<?php echo $pagetitlelink; ?>" class="btn btn-danger">Cancel</a>
+                                    <button type="submit" class="btn btn-success" name="submit" value="add_cont">Save and continue</button>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Save</button>
+                                </div>
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
