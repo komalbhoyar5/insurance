@@ -150,8 +150,15 @@ class PlansController extends AppController {
 		$this->set('coverType_list',$coverType_list);
 
 		$this->loadmodel('DependentType');
-		$dependent_list = $this->DependentType->find('list', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));
-		$this->set('dependent_list',$dependent_list);
+		$dependent_list = $this->DependentType->find('all', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));
+		foreach ($dependent_list as $key => $value) {
+			if ($value['DependentType']['min_age'] !="" && $value['DependentType']['max_age']) {
+				$de_list[$key] = $value['DependentType']['title'].' '.$value['DependentType']['min_age'] .' - '. $value['DependentType']['max_age'] .' yrs';
+			}else{
+				$de_list[$key] = $value['DependentType']['title'];
+			}
+		}
+		$this->set('dependent_list',$de_list);
 
 		$this->loadmodel('CoverBenefit');
 		$cover_list = $this->CoverBenefit->find('list', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));

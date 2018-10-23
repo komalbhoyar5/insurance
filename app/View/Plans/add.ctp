@@ -30,7 +30,7 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Plan name<span>*</span></label>
+                                    <label>Title<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'plan_name',
@@ -41,6 +41,8 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-6">
                                     <label>Product / Schemes<span>*</span></label>
                                     <?php
@@ -54,18 +56,18 @@
                                         );
                                     ?>
                                 </div>
-                                <div class="form-group col-sm-6">
+                              <!--   <div class="form-group col-sm-6">
                                     <label>Cause of claim / death<span>*</span></label>
                                     <?php
-                                        echo $this->Form->input(
-                                            'cause_of_claim',
-                                            array(
-                                                'class' => 'form-control',
-                                                'label' => false,
-                                            )
-                                        );
+                                        // echo $this->Form->input(
+                                        //     'cause_of_claim',
+                                        //     array(
+                                        //         'class' => 'form-control',
+                                        //         'label' => false,
+                                        //     )
+                                        // );
                                     ?>
-                                </div>
+                                </div> -->
                                 <div class="form-group col-sm-6">
                                     <label>Plan type<span>*</span></label>
                                     <?php
@@ -79,6 +81,8 @@
                                         );
                                     ?>
                                 </div>
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group col-sm-12">
                                     <label>Description</label>
                                     <?php
@@ -97,8 +101,8 @@
                                     <table>
                                         <tr>
                                             <th width="14%"><div class="main_heading">Dependents</div></th>
-                                            <th><div class="main_heading">Claim type</div></th>
-                                            <th><div class="main_heading">Sum Assured/Benefits</div></th>
+                                            <th><div class="main_heading">Cover benefits</div></th>
+                                            <th><div class="main_heading">Sum assured</div></th>
                                             <th><div class="main_heading">Min age</div></th>
                                             <th><div class="main_heading">Max age</div></th>
                                             <th><div class="main_heading">Living allowance per month</div></th>

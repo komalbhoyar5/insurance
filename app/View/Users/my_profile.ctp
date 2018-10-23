@@ -95,16 +95,16 @@
                                         </div>
                                     </div>  
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>City:</label>
+                                            <label>Country:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="details"><?php echo $user['User']['country']; ?></div>
                                         </div>
                                     </div>  
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -117,52 +117,6 @@
                                 </div>
                             </div>
                                 <hr>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Commission:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="details">Rs 1000</div>
-                                        </div>
-                                    </div>  
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Security deposit:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="details">Rs 500</div>
-                                        </div>
-                                    </div>  
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Credit Limit:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="details">Rs 10,000</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Credit Period:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="details">230 days</div>
-                                        </div>
-                                    </div>  
-                                </div>
-                                <!-- /.col-lg-12 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
                     </div>

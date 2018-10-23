@@ -148,5 +148,7 @@ class AppController extends Controller {
 	    	return $childs;
 	    }
 	}
-
+	public function beforeRender() {
+	    $this->response->disableCache();
+	}
 }
