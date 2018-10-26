@@ -200,4 +200,21 @@ class GeneralComponent extends Component {
         }
     }
 
+    public function convertdateinSQLFormat($date){
+        if ($date !="") {
+            $date = str_replace('/', '-', $date);
+            return date('Y-m-d', strtotime($date));
+        }else{
+            return "";
+        }
+    }
+    public function convertdateinphpFormat($date){
+        if ($date !="") {
+            $date = str_replace('-', '/', $date);
+            return date('d/m/Y', strtotime($date));
+        }else{
+            return "";
+        }
+    }
+
 };

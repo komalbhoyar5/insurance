@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  */
 class Agenttype extends AppModel {
+	public $useTable = 'agenttypes';
 
 /**
  * Display field

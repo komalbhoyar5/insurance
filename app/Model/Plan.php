@@ -24,7 +24,7 @@ class Plan extends AppModel {
 			'isUnique' => array(
 				'rule' => array('checkUniqueplan_code'),
 				'required' => 'create',
-				'message' => 'This plan_code already exists'
+				'message' => 'This plan code already exists'
 			)
 		),
 		'plan_name' => array(

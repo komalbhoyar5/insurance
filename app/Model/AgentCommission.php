@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  * @property Agent $Agent
  */
 class AgentCommission extends AppModel {
+	public $useTable = 'agent_commissions';
 
 /**
  * Validation rules
@@ -16,6 +17,7 @@ class AgentCommission extends AppModel {
 		'effective_from_date' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
+				'message' => 'should not be empty',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -26,6 +28,7 @@ class AgentCommission extends AppModel {
 		'effective_to_date' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
+				'message' => 'should not be empty',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -33,46 +36,47 @@ class AgentCommission extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'commission_rate' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'tax_on_commission' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			// 'commission_rate' => array(
+			// 	// 'notEmpty' => array(
+			// 	// 	'rule' => array('notEmpty'),
+			// 	// 	//'message' => 'Your custom message here',
+			// 	// 	//'allowEmpty' => false,
+			// 	// 	//'required' => false,
+			// 	// 	//'last' => false, // Stop validation after this rule
+			// 	// 	//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			// 	// ),
+			// 	// 'numeric' => array(
+			// 	// 	'rule' => array('numeric'),
+			// 	// 	//'message' => 'Your custom message here',
+			// 	// 	//'allowEmpty' => false,
+			// 	// 	'required' => false,
+			// 	// 	//'last' => false, // Stop validation after this rule
+			// 	// 	//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			// 	// ),
+			// ),
+			// 'tax_on_commission' => array(
+			// 	'notEmpty' => array(
+			// 		'rule' => array('notEmpty'),
+			// 		//'message' => 'Your custom message here',
+			// 		//'allowEmpty' => false,
+			// 		//'required' => false,
+			// 		//'last' => false, // Stop validation after this rule
+			// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			// 	),
+			// 	'numeric' => array(
+			// 		'rule' => array('numeric'),
+			// 		//'message' => 'Your custom message here',
+			// 		//'allowEmpty' => false,
+			// 		//'required' => false,
+			// 		//'last' => false, // Stop validation after this rule
+			// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			// 	),
+			// ),
 		'commision_from_month' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'should not be empty',
+				'required' => true,
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -80,9 +84,8 @@ class AgentCommission extends AppModel {
 			),
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Enter numeric value',
 				//'allowEmpty' => false,
-				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -90,15 +93,15 @@ class AgentCommission extends AppModel {
 		'commission_to_month' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
+				'message' => 'should not be empty',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Enter numeric value',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

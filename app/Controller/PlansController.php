@@ -63,9 +63,6 @@ class PlansController extends AppController {
 			$this->request->data['Plan']['created_by'] = $user_id;
 			$this->request->data['Plan']['created_date'] = date('Y-m-d H:i:s');
 			$this->request->data['Plan']['company_id'] = $user['User']['company_id'];
-		// 	echo "<pre>";
-		// print_r($this->request->data);
-		// exit();
 
 			$this->Plan->create();
 			if ($this->Plan->saveAll($this->request->data)) {
@@ -92,9 +89,9 @@ class PlansController extends AppController {
 			$dependent_list = $this->DependentType->find('all', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));
 			foreach ($dependent_list as $key => $value) {
 				if ($value['DependentType']['min_age'] !="" && $value['DependentType']['max_age']) {
-					$de_list[$key] = $value['DependentType']['title'].' '.$value['DependentType']['min_age'] .' - '. $value['DependentType']['max_age'] .' yrs';
+					$de_list[$value['DependentType']['id']] = $value['DependentType']['title'].' '.$value['DependentType']['min_age'] .' - '. $value['DependentType']['max_age'] .' yrs';
 				}else{
-					$de_list[$key] = $value['DependentType']['title'];
+					$de_list[$value['DependentType']['id']] = $value['DependentType']['title'];
 				}
 			}
 			$this->set('dependent_list',$de_list);

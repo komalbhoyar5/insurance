@@ -28,15 +28,14 @@
 									<thead>
 										<tr>
 											<th></th>
-											<th>Code</th>
+											<th>Agent code</th>
 											<th>Name</th>
 											<th>Email</th>
-											<th>Telephone</th>
+											<th>Mobile no</th>
 											<th>City/Town</th>
-											<th>Commission</th>
-											<th>Security Deposit</th>
+											<th>Security deposit</th>
 											<th>Credit limit</th>
-											<th>Credit Period</th>
+											<th>Credit period</th>
 
 
 											<?php 
@@ -57,11 +56,10 @@
 												<td><?php echo $count; ?></td>
 												
 												<td><?php echo h($agent['Agent']['agent_code']); ?></td>
-												<td><?php echo h($agent['Agent']['f_name']); ?></td>
+												<td><?php echo ucwords($agent['Agent']['f_name']. ' '. $agent['Agent']['l_name']); ?></td>
 												<td><?php echo h($agent['Agent']['email_id']); ?></td>
-												<td><?php echo h($agent['Agent']['phone_no']); ?></td>
+												<td><?php echo h($agent['Agent']['mobile_no']); ?></td>
 												<td><?php echo h($agent['Agent']['city']); ?></td>
-												<td></td>
 												<td><?php echo h($agent['Agent']['security_deposite']); ?></td>
 												<td><?php echo h($agent['Agent']['credit_limit']); ?></td>
 												<td><?php echo h($agent['Agent']['credit_period']); ?></td>

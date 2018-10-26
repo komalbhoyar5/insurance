@@ -56,7 +56,7 @@
                                             ?>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Phone Number</label>
+                                            <label>Phone number</label>
                                             <?php
                                                 echo $this->Form->input(
                                                     'contact_no',
@@ -68,7 +68,7 @@
                                             ?>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Mobile Number<span>*</span></label>
+                                            <label>Mobile number<span>*</span></label>
                                             <?php
                                                 echo $this->Form->input(
                                                     'mobile_no',
@@ -80,7 +80,7 @@
                                             ?>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Fax Number</label>
+                                            <label>Fax number</label>
                                             <?php
                                                 echo $this->Form->input(
                                                     'fax_no',

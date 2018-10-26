@@ -19,7 +19,7 @@
                         <div class="col-lg-12">
                             <?php echo $this->Form->create('User', array('id' => 'employee')); ?>
                                 <div class="form-group col-sm-6">
-                                    <label>Employee Code<span>*</span></label>
+                                    <label>Employee code<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'code',
@@ -57,7 +57,7 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Contact Number<span>*</span></label>
+                                    <label>Contact number<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'mobile_no',

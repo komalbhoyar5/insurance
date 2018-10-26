@@ -48,7 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Phone Number:</label>
+                                            <label>Phone number:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="details"><?php echo $user['User']['contact_no']; ?></div>
@@ -58,7 +58,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Mobile Number:</label>
+                                            <label>Mobile number:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="details"><?php echo $user['User']['mobile_no']; ?></div>
@@ -68,7 +68,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Fax Number:</label>
+                                            <label>Fax number:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="details"><?php echo $user['User']['fax_no']; ?></div>
@@ -78,7 +78,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Other Number:</label>
+                                            <label>Other number:</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="details"><?php echo $user['User']['other_no']; ?></div>

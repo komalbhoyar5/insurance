@@ -43,7 +43,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Last name<span>*</span></label>
+                                    <label>Last name</label>
                                     <?php
                                         echo $this->Form->input(
                                             'l_name',
@@ -55,7 +55,7 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Date of birth<span>*</span></label>
+                                    <label>Date of birth</label>
                                      <?php
                                         echo $this->Form->input(
                                             'date_of_birth',
@@ -63,9 +63,8 @@
                                                 'class' => 'form-control',
                                                 'label' => false,
                                                 'type' => 'text', 
-                                                'placeholder'  => 'DD-MM-YYYY',
-                                                'id' => 'DOB',
-                                                'readonly' => true
+                                                'placeholder'  => 'DD/MM/YYYY',
+                                                'id' => 'DOB'
 
                                             )
                                         );
@@ -99,21 +98,22 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Parent agent<span>*</span></label>
+                                    <label>Parent agent</label>
                                     <?php
                                         echo $this->Form->input(
                                             'parent_agent_id',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
-                                                'type'  => 'text'
+                                                'empty' => 'Please select parent agent',
+                                                'options' => $agents
                         
                                             )
                                         );
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Contact person<span>*</span></label>
+                                    <label>Contact person</label>
                                     <?php
                                         echo $this->Form->input(
                                             'contact_person',
@@ -125,7 +125,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Agent NRC<span>*</span></label>
+                                    <label>Agent NRC</label>
                                     <?php
                                         echo $this->Form->input(
                                             'NRC',
@@ -137,7 +137,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Email<span>*</span></label>
+                                    <label>Email</label>
                                     <?php
                                         echo $this->Form->input(
                                             'email_id',
@@ -150,7 +150,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Phone Number<span>*</span></label>
+                                    <label>Phone number</label>
                                     <?php
                                         echo $this->Form->input(
                                             'phone_no',
@@ -162,7 +162,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Mobile Number<span>*</span></label>
+                                    <label>Mobile number<span>*</span></label>
                                     <?php
                                         echo $this->Form->input(
                                             'mobile_no',
@@ -174,7 +174,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Fax Number<span>*</span></label>
+                                    <label>Fax number</label>
                                     <?php
                                         echo $this->Form->input(
                                             'fax_no',
@@ -186,7 +186,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Other Number<span>*</span></label>
+                                    <label>Other number</label>
                                     <?php
                                         echo $this->Form->input(
                                             'other_no',
@@ -198,7 +198,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-12">
-                                    <label>Address<span>*</span></label>
+                                    <label>Address</label>
                                     <?php
                                         echo $this->Form->input(
                                             'address1',
@@ -224,7 +224,7 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>City<span>*</span></label>
+                                    <label>City</label>
                                     <?php
                                         echo $this->Form->input(
                                             'city',
@@ -236,19 +236,21 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Country<span>*</span></label>
+                                    <label>Country</label>
                                     <?php
                                         echo $this->Form->input(
                                             'country',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
+                                                'options' => $countries,
+                                                'empty'=> 'Select country'
                                             )
                                         );
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Zip code<span>*</span></label>
+                                    <label>Zip code</label>
                                     <?php
                                         echo $this->Form->input(
                                             'zip_code',
@@ -260,7 +262,7 @@
                                     ?>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Appointment Date<span>*</span></label>
+                                    <label>Appointment date</label>
                                     <?php
                                         echo $this->Form->input(
                                             'appointment_date',
@@ -268,8 +270,7 @@
                                                 'class' => 'form-control',
                                                 'label' => false,
                                                 'type' => 'text', 
-                                                'placeholder'  => 'DD-MM-YYYY',
-                                                'readonly' => true,
+                                                'placeholder'  => 'DD/MM/YYYY',
                                                 'id' => 'appo_date'
 
                                             )
@@ -277,37 +278,43 @@
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Security deposit<span>*</span></label>
+                                    <label>Security deposit</label>
                                     <?php
                                         echo $this->Form->input(
                                             'security_deposite',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
+                                                'type' => 'number',
+                                                'step' => '.01'
                                             )
                                         );
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Credit Limit<span>*</span></label>
+                                    <label>Credit Limit</label>
                                     <?php
                                         echo $this->Form->input(
                                             'credit_limit',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
+                                                'type' => 'number',
+                                                'step' => '.01'
                                             )
                                         );
                                     ?>
                                 </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Credit Period<span>*</span></label>
+                                    <label>Credit period</label>
                                     <?php
                                         echo $this->Form->input(
                                             'credit_period',
                                             array(
                                                 'class' => 'form-control',
                                                 'label' => false,
+                                                'type' => 'number',
+                                                'step' => '.01'
                                             )
                                         );
                                     ?>
@@ -330,26 +337,25 @@
                                     <table class="client_add_table">
                                         <tr>
                                             <!-- <th width="20%"><div class="main_heading">Product / schemes</div></th> -->
-                                            <th><div class="main_heading">Effective from date</div></th>
-                                            <th><div class="main_heading">Effective to date</div></th>
+                                            <th><div class="main_heading">Effective from date<span>*</span></div></th>
+                                            <th><div class="main_heading">Effective to date<span>*</span></div></th>
                                             <!-- <th><div class="main_heading">Number of installments</div></th> -->
                                             <th><div class="main_heading">Commission rate</div></th>
                                             <th><div class="main_heading">Tax on commission</div></th>
-                                            <th><div class="main_heading">Commission from month</div></th>
-                                            <th><div class="main_heading">Commission to month</div></th>
+                                            <th><div class="main_heading">Commission from month<span>*</span></div></th>
+                                            <th><div class="main_heading">Commission to month<span>*</span></div></th>
                                             <th></th>
                                         </tr>
-                                        <tr class="addnewrow" id="remove_1">
+                                        <tr class="addnewrow" id="remove_0">
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.effective_from_date',
+                                                        'AgentCommission.0.effective_from_date',
                                                         array(
                                                             'class' => 'form-control eff_com_date',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'placeholder'  => 'DD-MM-YYYY',
-                                                            'readonly' => true,
+                                                            'placeholder'  => 'DD/MM/YYYY',
                                                             'div' => false
                                                         )
                                                     );
@@ -358,13 +364,12 @@
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.effective_to_date',
+                                                        'AgentCommission.0.effective_to_date',
                                                         array(
                                                             'class' => 'form-control eff_com_date',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'placeholder'  => 'DD-MM-YYYY',
-                                                            'readonly' => true,
+                                                            'placeholder'  => 'DD/MM/YYYY',
                                                             'div' => false
                                                         )
                                                     );
@@ -373,12 +378,16 @@
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.commission_rate',
+                                                        'AgentCommission.0.commission_rate',
                                                         array(
                                                             'class' => 'form-control',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'div' => false
+                                                            'div' => false,
+                                                            'type' => 'number',
+                                                            'step' => '.01',
+                                                            'min' => '0',
+                                                            'max' => '100'
                                                         )
                                                     );
                                                 ?>
@@ -386,12 +395,14 @@
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.tax_on_commission',
+                                                        'AgentCommission.0.tax_on_commission',
                                                         array(
                                                             'class' => 'form-control',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'div' => false
+                                                            'div' => false,
+                                                            'type' => 'number',
+                                                            'step' => '.01'
                                                         )
                                                     );
                                                 ?>
@@ -399,12 +410,13 @@
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.commision_from_month',
+                                                        'AgentCommission.0.commision_from_month',
                                                         array(
                                                             'class' => 'form-control',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'div' => false
+                                                            'div' => false,
+                                                            'type' => 'number'
                                                         )
                                                     );
                                                 ?>
@@ -412,12 +424,13 @@
                                             <td>
                                                 <?php
                                                     echo $this->Form->input(
-                                                        'AgentCommission.commission_to_month',
+                                                        'AgentCommission.0.commission_to_month',
                                                         array(
                                                             'class' => 'form-control',
                                                             'label' => false,
                                                             'type' => 'text', 
-                                                            'div' => false
+                                                            'div' => false,
+                                                            'type' => 'number'
                                                         )
                                                     );
                                                 ?>
@@ -467,8 +480,8 @@
     $( document ).ready(function() {
         $( "body" ).on( "click",'.addtype', function() {
             var id = $('.addnewrow').last().attr('id').split('_')[1];
-            var nextid = parseInt(id) + parseInt(1);
-            $('.addnewrow').last().after('<td> <input name="data[AgentCommission][effective_from_date]" class="form-control new_eff_com_date" placeholder="DD-MM-YYYY" readonly="readonly" type="text" id="AgentCommissionEffectiveFromDate"> </td><td> <input name="data[AgentCommission][effective_to_date]" class="form-control new_eff_com_date" placeholder="DD-MM-YYYY" readonly="readonly" type="text" id="AgentCommissionEffectiveToDate"> </td><td> <input name="data[AgentCommission][commission_rate]" class="form-control" type="text" id="AgentCommissionCommissionRate"> </td><td> <input name="data[AgentCommission][tax_on_commission]" class="form-control" type="text" id="AgentCommissionTaxOnCommission"> </td><td> <input name="data[AgentCommission][commision_from_month]" class="form-control" type="text" id="AgentCommissionCommisionFromMonth"> </td><td> <input name="data[AgentCommission][commission_to_month]" class="form-control" type="text" id="AgentCommissionCommissionToMonth"> </td><td> <button type="button" class="btn btn-info btn-circle addtype" id=""><i class="fa fa-plus"></i></button> </td>');
+            var newposition = parseInt(id) + parseInt(1);
+            $('.addnewrow').last().after('<tr class="addnewrow" id="del_'+newposition+'"> <td> <input name="data[AgentCommission]['+newposition+'][effective_from_date]" class="form-control new_eff_com_date" placeholder="DD/MM/YYYY" type="text" required id="AgentCommissionEffectiveFromDate"> </td><td> <input name="data[AgentCommission]['+newposition+'][effective_to_date]" class="form-control new_eff_com_date" placeholder="DD/MM/YYYY" type="text" required id="AgentCommissionEffectiveToDate"> </td><td> <input name="data[AgentCommission]['+newposition+'][commission_rate]" class="form-control" type="number" step=".01" min="0" max="99" id="AgentCommissionCommissionRate"> </td><td> <input name="data[AgentCommission]['+newposition+'][tax_on_commission]" class="form-control" type="number" step=".01" id="AgentCommissionTaxOnCommission"> </td><td> <input name="data[AgentCommission]['+newposition+'][commision_from_month]" class="form-control" type="number" required id="AgentCommissionCommisionFromMonth"> </td><td> <input name="data[AgentCommission]['+newposition+'][commission_to_month]" class="form-control" type="number" required id="AgentCommissionCommissionToMonth"> </td><td> <button type="button" class="btn btn-danger btn-circle removetype"><i class="fa fa-remove"></i></button> </td></tr>');
 
              $('.new_eff_com_date').datepicker({
                 autoclose: true,  

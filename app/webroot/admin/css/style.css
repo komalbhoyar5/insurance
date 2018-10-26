@@ -350,6 +350,7 @@ table .btn-circle {
 .client_add_table td {
     padding: 0;
     padding-bottom: 15px;
+    vertical-align: top !important;
 }
 .plantable th{
     text-align: center;
@@ -419,4 +420,14 @@ table .btn-circle {
     opacity: 1 !important;
     cursor: not-allowed !important;
     background-color: #eee !important;
+}
+.main_heading span{
+    color: #ec7171;
+}
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after{
+        right: 2px !important;
+}
+.checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 7px;
 }

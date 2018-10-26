@@ -29,7 +29,7 @@
 										<tr>
 											<th></th>
 											<th>Customer name</th>
-											<th>Mobile No</th>
+											<th>Mobile no</th>
 											<th>Customer type</th>
 											<th>Status</th>
 											
@@ -51,9 +51,16 @@
 										?>
 											<tr>
 												<td><?php echo $count; ?></td>
-												
-							<td><?php echo ucwords($customer['Customer']['f_name'] .' '. $customer['Customer']['l_name']); ?></td>
-												
+												<?php
+													if ($customer['Customer']['customer_type'] == 'Group') { ?>
+													<td> <?php echo ucwords($customer['Customer']['c_name']); ?>
+													</td>
+												<?php
+													}else{ ?>
+														<td><?php echo ucwords($customer['Customer']['f_name'] .' '. $customer['Customer']['l_name']); ?></td>
+												<?php
+													}
+												?>
 												<td><?php echo h($customer['Customer']['mobile_no']); ?></td>
 												<td><?php echo h($customer['Customer']['customer_type']); ?></td>
 												<td><?php echo h($customer['Customer']['status']); ?></td>

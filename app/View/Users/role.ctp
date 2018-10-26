@@ -26,7 +26,7 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>RoleID</th>
+                                            <th>Role id</th>
                                             <th>Role name</th>
                                             <th class="action"></th>
                                         </tr>

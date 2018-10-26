@@ -58,11 +58,18 @@ class CustomersController extends AppController {
 										 'fields'=>array('company_id')
 										));
 
+		$Component = $this->Components->load('General');
+
 		if ($this->request->is('post')) {
 			$this->request->data['Customer']['created_by'] = $user_id;
 			$this->request->data['Customer']['created_date'] = date('Y-m-d H:i:s');
 			$this->request->data['Customer']['company_id'] = $user['User']['company_id'];
-
+			if (isset($this->request->data['Customer']['date_of_birth'])) {
+				$this->request->data['Customer']['date_of_birth'] = $Component->convertdateinSQLFormat($this->request->data['Customer']['date_of_birth']);
+			}
+			// echo "<pre>";
+			// print_r($this->request->data);
+			// exit();
 			$this->Customer->create();
 			if ($this->Customer->save($this->request->data)) {
 				$this->Session->setFlash('The Customer details has been saved.', '', array(), 'success');
@@ -87,8 +94,15 @@ class CustomersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$continue = array();
+		$this->loadmodel('User');
 		$user_id = $this->Auth->user('id');
+		$user = $this->User->find('first', array('conditions'=> array('User.id' => $user_id),
+										 'fields'=>array('company_id')
+										));
+
 		$this->layout = "backend_template";
+		$Component = $this->Components->load('General');
 		if (!$this->Customer->exists($id)) {
 			throw new NotFoundException(__('Invalid Customer'));
 		}
@@ -96,6 +110,9 @@ class CustomersController extends AppController {
 			$this->request->data['Customer']['id'] = $id;
 			$this->request->data['Customer']['updated_by'] = $user_id;
 			$this->request->data['Customer']['updated_date'] = date('Y-m-d H:i:s');
+			if (isset($this->request->data['Customer']['date_of_birth'])) {
+				$this->request->data['Customer']['date_of_birth'] = $Component->convertdateinSQLFormat($this->request->data['Customer']['date_of_birth']);
+			}
 			if ($this->Customer->save($this->request->data)) {
 				$this->Session->setFlash('The Customer cycle has been saved.', '', array(), 'success');
 				return $this->redirect(array('action' => 'index'));
@@ -105,11 +122,12 @@ class CustomersController extends AppController {
 		} else {
 			$options = array('conditions' => array('Customer.' . $this->Customer->primaryKey => $id));
 			$this->request->data = $this->Customer->find('first', $options);
+			$this->request->data['Customer']['date_of_birth'] = $Component->convertdateinphpFormat($this->request->data['Customer']['date_of_birth']);
 
 		}
 		$this->loadmodel('Occupation');
-			$occupation_list = $this->Occupation->find('list', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));
-			$this->set('occupation_list',$occupation_list);
+		$occupation_list = $this->Occupation->find('list', array('conditions'=> array('deleted_status'=>'No', 'company_id'=>$user['User']['company_id'])));
+		$this->set('occupation_list',$occupation_list);
 	}
 /**
  * delete method
